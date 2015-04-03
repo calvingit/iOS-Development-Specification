@@ -5,6 +5,6 @@
 * [方法(Method)命名](2_Naming_Methods.md)
 * [函数(Function)命名](3_Naming_Functions.md)
 * [属性(Property)与数据类型命名](4_Naming_Properties_and_Data_Types.md)
-* [5 可接受的缩略语](5_Acceptable_Abbreviations_and_Acronyms.md)
+* [可接受的缩略语](5_Acceptable_Abbreviations_and_Acronyms.md)
 * [开发小贴士和技巧](6_Tips_and_Techniques_for_Framework_Developers.md)
 
