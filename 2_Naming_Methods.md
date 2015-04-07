@@ -74,5 +74,82 @@
 ```- (void) setShowAlpha:(BOOL)flag; 
 - (BOOL) showsAlpha;
 ```
+* 不要使用动词的过去分词形式作形容词使用
+```- (void)setAcceptsGlyphInfo:(BOOL)flag;  //对- (BOOL)acceptsGlyphInfo;                //对- (void)setGlyphInfoAccepted:(BOOL)flag; //错- (BOOL)glyphInfoAccepted;               //错
+```
+* 可以使用情态动词(can, should, will 等)来提高清晰性,但不要使用 do 或 does
 
+```
+- (void) setCanHide:(BOOL)flag;             //对- (BOOL) canHide;                           //对- (void) setShouldCloseDocument:(BOOL)flag; //对- (void) shouldCloseDocument;               //对 
+- (void) setDoseAcceptGlyphInfo:(BOOL)flag; //错 
+- (BOOL) doseAcceptGlyphInfo;               //错
+```
+* 只有在方法需要间接返回多个值的情况下,才使用 get
 
+```
+- (void) getLineDash:(float *)pattern count:(int *)count phase:(float *)phase;  //NSBezierPath
+```
+像上面这样的方法,在其实现里应允许接受 NULL 作为其 in/out 参数,以表示调用者对一个或多个返回 值不感兴趣。
+
+#委托方法
+委托方法是那些在特定事件发生时可被对象调用,并声明在对象的委托类中的方法。它们有独特的命名约定,这些命名约定同样也适用于对象的数据源方法。* 名称以标示发送消息的对象的类名开头,省略类名的前缀并小写类第一个字符 
+
+```- (BOOL) tableView:(NSTableView *)tableView shouldSelectRow:(int)row;- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename;
+```
+
+* 冒号紧跟在类名之后(随后的那个参数表示委派的对象)。该规则不适用于只有一个 sender 参数的方法
+
+```- (BOOL) applicationOpenUntitledFile:(NSApplication *)sender;```
+
+* 上面的那条规则也不适用于响应通知的方法。在这种情况下,方法的唯一参数表示通知对象
+
+```
+- (void) windowDidChangeScreen:(NSNotification *)notification;
+```
+
+* 用于通知委托对象操作即将发生或已经发生的方法名中要使用 did 或 will 
+
+```
+- (void) browserDidScroll:(NSBrowser *)sender;- (NSUndoManager *) windowWillReturnUndoManager:(NSWindow *)window;
+```
+* 用于询问委托对象可否执行某操作的方法名中可使用 did 或 will,但最好使用 should 
+```- (BOOL) windowShouldClose:(id)sender;```
+#集合方法
+管理对象(集合中的对象被称之为元素)的集合类,约定要具备如下形式的方法:```- (void) addElement:(elementType)adObj;- (void) removeElement:(elementType)anObj;
+- (NSArray *)elements;```例如:```- (void) addLayoutManager:(NSLayoutManager *)adObj;- (void) removeLayoutManager:(NSLayoutManager *)anObj; 
+- (NSArray *)layoutManagers;```集合方法命名有如下一些限制和约定:
+* 如果集合中的元素无序,返回 NSSet,而不是 NSArray* 如果将元素插入指定位置的功能很重要,则需具备如下方法:
+```- (void) insertElement:(elementType)anObj atIndex:(int)index;
+- (void) removeElementAtIndex:(int)index;
+```
+集合方法的实现要考虑如下细节:* 以上集合类方法通常负责管理元素的所有者关系,在 add 或 insert 的实现代码里会 retain 元素,在 remove 的实现代码中会 release 元素
+* 当被插入的对象需要持有指向集合对象的指针时,通常使用 set... 来命名其设置该指针的方法,且不 要 retain 集合对象。比如上面的 insertLayerManager:atIndex: 这种情形,NSLayoutManager 类使 用如下方法:
+
+```
+- (void) setTextStorage:(NSTextStorage *)textStorage; 
+- (NSTextStorage *)textStorage;
+```
+通常你不会直接调用 setTextStorage:,而是覆写它。另一个关于集合约定的例子来自 NSWindow 类:
+
+```
+- (void) addChildWindow:(NSWindow *)childWin ordered:(NSWindowOrderingMode)place;
+- (void) removeChildWindow:(NSWindow *)childWin;- (NSArray *)childWindows;- (NSWindow *) parentWindow;- (void) setParentWindow:(NSWindow *)window;
+```
+#方法参数
+命名方法参数时要考虑如下规则:* 如同方法名,参数名小写第一个单词的首字符,大写后继单词的首字符。如:removeObject:(id)anObject* 不要在参数名中使用 pointer 或 ptr,让参数的类型来说明它是指针* 避免使用 one, two,...,作为参数名* 避免为节省几个字符而缩写按照 Cocoa 惯例,以下关键字与参数联合使用:
+```
+...action:(SEL)aSelector 
+..alignment:(int)mode 
+...atIndex:(int)index 
+...content:(NSRect)aRect 
+...doubleValue:(double)aDouble 
+...floatValue:(float)aFloat 
+...font:(NSFont *)fontObj 
+...frame:(NSRect)frameRect 
+...intValue:(int)anInt
+...keyEquivalent:(NSString *)charCode...length:(int)numBytes...point:(NSPoint)aPoint...stringValue:(NSString *)aString...tag:(int)anInt...target:(id)anObject...title:(NSString *)aString```
+#私有方法
+大多数情况下,私有方法命名相同与公共方法命名约定相同,但通常我们约定给私有方法添加前缀,以便 与公共方法区分开来。即使这样,私有方法的名称很容易导致特别的问题。当你设计一个继承自 Cocoa framework 某个类的子类时,你无法知道你的私有方法是否不小心覆盖了框架中基类的同名方法。
+Cocoa framework 的私有方法名称通常以下划线作为前缀(如:_fooData),以标示其私有属性。基于这 样的事实,遵循以下两条建议:
+* 不要使用下划线作为你自己的私有方法名称的前缀,Apple 保留这种用法。* 若要继承 Cocoa framework 中一个超大的类(如:NSView),并且想要使你的私有方法名称与基类中的区别开来,你可以为你的私有方法名称添加你自己的前缀。这个前缀应该具有唯一性, 建议用"p_Method"格式，p代表private。
+尽管为私有方法名称添加前缀的建议与前面类中方法命名的约定冲突,这里的意图有所不同:为了防止不小心地覆盖基类中的私有方法。
