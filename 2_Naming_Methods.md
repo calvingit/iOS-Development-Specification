@@ -33,3 +33,46 @@
 |--|--|
 | - (id) viewWithTag:(int)aTag;  | 对 |
 | - (id) taggedView:(int)aTag; | 错 |
+
+* 细化基类中的已有方法:创建一个新方法,其名称是在被细化方法名称后面追加参数关键词
+
+```
+- (id)initWithFrame:(CGRect)frameRect;//NSView, UIView.- (id)initWithFrame:(NSRect)frameRect mode:(int)aMode  cellClass:(Class)factoryId numberOfRows:(int)rowsHigh numberOfColumns (int)colsWide;//NSMatrix, a subclass of NSView
+```
+* 不要使用 and 来连接用属性作参数的关键字
+
+| 代码 | 点评 |
+|--|--|
+| - (int)runModalForDirectory:(NSString *)path file:(NSString *)name types:(NSArray *)fileTypes; | 对 |
+|- (int)runModalForDirectory:(NSString *)path andFile:(NSString *)name andTypes:(NSArray *)fileTypes;| 错 |
+
+虽然上面的例子中使用 add 看起来也不错,但当你方法有太多参数关键字时就有问题。
+
+* 如果方法描述两种独立的行为,使用 and 来串接它们
+
+```
+- (BOOL) openFile:(NSString *)fullPath withApplication:(NSString NSWorkspace *)appName andDeactivate:(BOOL)flag;//NSWorkspace.
+```
+
+#访问方法
+访问方法是对象属性的读取与设置方法。其命名有特定的格式依赖于属性的描述内容。
+
+* 如果属性是用名词描述的,则命名格式为:```- (void) setNoun:(type)aNoun;- (type) noun;
+```例如:```- (void) setgColor:(NSColor *)aColor;
+- (NSColor *) color;```* 如果属性是用形容词描述的,则命名格式为: 
+
+```- (void) setAdjective:(BOOL)flag;- (BOOL) isAdjective;```例如:
+```- (void) setEditable:(BOOL)flag;
+- (BOOL) isEditable;
+```
+* 如果属性是用动词描述的,则命名格式为:(动词要用现在时时态) 
+
+```
+- (void) setVerbObject:(BOOL)flag;- (BOOL) verbObject;
+```
+例如:
+```- (void) setShowAlpha:(BOOL)flag; 
+- (BOOL) showsAlpha;
+```
+
+
