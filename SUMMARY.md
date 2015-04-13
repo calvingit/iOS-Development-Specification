@@ -2,7 +2,7 @@
 
 * [介绍](README.md)
 * [前言](why.md)
-* [命名规范](1_Code_Naming_Basics.md)
+* 命名规范
     * [代码命名基础](1_Code_Naming_Basics.md)
     * [方法(Method)命名](2_Naming_Methods.md)
     * [函数(Function)命名](3_Naming_Functions.md)
