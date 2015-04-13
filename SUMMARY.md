@@ -12,10 +12,10 @@
     * [注释规范]
     * [源文件结构]
 * [开发实践](6_Tips_and_Techniques_for_Framework_Developers.md)
-* [版本控制]
+* 版本控制
     * Git使用
     * 分支规范
     * 发布规范
-* [其他]
+* 其他
 * [参考](Reference.md)
 
