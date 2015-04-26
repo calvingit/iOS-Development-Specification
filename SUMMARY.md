@@ -13,13 +13,11 @@
     * [注释规范](Code_Comments.md)
     * [代码结构与格式](Code_Structure_And_Format.md)
 * [开发实践](Development_Practice.md)
-* 版本控制
-    * Git使用
-    * 分支规范
-    * 发布规范
 * [Xcode工程结构](Xcode_Project.md)
-* 附录一 Xcode常用插件
-* 附录二 Cocoapods使用
-* 附录三 
+* 代码版本控制
+    * [Git基本配置](Git_Basic.md)
+    * [Git工作流规范](Git_Flow.md)
+* 附录一 [Xcode常用插件](Xcode_Plugins)
+* 附录二 [常用第三方开源库](Third_Party_Library)
 * [参考](Reference.md)
 
