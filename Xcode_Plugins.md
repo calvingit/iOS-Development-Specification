@@ -1,39 +1,41 @@
-#Xcode配置
-##参数设置
-- 空格缩进
+# Xcode之插件
+虽然Xcode本身就是个大而全的玩意，用它就可以搞定所有的Mac/iOS开发工作。但是程序员的世界就是爱折腾，为了避免重复劳动，使用各种办法来提高效率，插件就是其中一种。
 
-	```
-	在 XCode -> Preferences -> Text Editing -> Indentation 中进行如下设置：
-	Prefer indent using: 选择 Spaces
-	Tab key：选择 Intents in leading whitespace
-	所有需要填写空格数目的地方都设置成4个
-	```
-		
-	设置成4个，是因为Xcode的默认缩进是4个空格。大量遗留代码也都是采用的缩进4个空格。
+这里将介绍一种叫[Alcatraz](https://github.com/alcatraz/Alcatraz)Xcode插件管理软件，非常简单好用的工具，它本身也是插件。
 
-- 每行代码的长度
+# Alcatraz 插件管理器
+![Alcatraz](https://camo.githubusercontent.com/f4106ea5018bf4beff4c8625b0f3abe528cceb7d/687474703a2f2f616c63617472617a2e696f2f696d616765732f6865616465724032782e706e67)  
 
-	```
-	勾选XCode->Preferences->Text Editing->Editing，并将长度设置成100个字符来打开行宽指示。
-	```
-	Google倡导的每行80个字符有点少，会带来更频繁的换行，因此增加到100个字符。
-
-##插件管理
-使用[Alcatraz](https://github.com/supermarin/Alcatraz)插件来管理其他插件
-
-- 安装Alcatraz
-
-
+## 安装
+在终端输入下面命令
 ```
- curl -fsSL https://raw.github.com/supermarin/Alcatraz/master/Scripts/install.sh | sh
+curl -fsSL https://raw.github.com/alcatraz/Alcatraz/master/Scripts/install.sh | sh
+```
+成功之后会给你一杯啤酒
+> Alcatraz successfully installed!!1!🍻   Please restart your Xcode.
+
+然后重启一下Xcode。就可以看到在Menu — Windows 看到`Package Manager`,打开它，然后就长这个样子
+
+![](https://camo.githubusercontent.com/919efe4e1e53237df51d7010c862bd5c04fd6a70/687474703a2f2f616c63617472617a2e696f2f696d616765732f73637265656e73686f744032782e706e67)
+
+里面有三种东西：Plugins(插件)，Color Themes(颜色主题)，Templates(模板)
+
+选择你想要的东西，点击==INSTALL==按钮开始安装，完成之后会显示红色的==REMOVE==按钮。
+
+## 卸载
+打开终端粘贴下面的命令：
+```
+rm -rf ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin
 ```
 
-- 卸载Alcatraz
+删除掉Alcatraz安装的所有插件：
+```
+rm -rf ~/Library/Application\ Support/Alcatraz/
+```
 
-```
- rm -rf ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin
- rm -rf ~/Library/Application\ Support/Alcatraz/
-```
+
+# 常用插件
+
 Alcatraz里面常用插件说明
 
 | 插件 | 用途 |
@@ -51,3 +53,10 @@ Alcatraz里面常用插件说明
 | [OMColorSense](https://github.com/omz/ColorSense-for-Xcode)| 代码里的那些冷冰冰的颜色数值，到底时什么颜色？如果你经常遇到这个问题，每每不得不运行下模拟器去看看，那么这个插件绝对不容错过。更彪悍的是你甚至可以点击显示的颜色面板，直接通过系统的ColorPicker来自动生成对应颜色代码，再也不用做各种颜色代码转换了！|
 | [ClangFormat](https://github.com/travisjeffery/ClangFormat-Xcode) | CLang代码格式化 |
 | [CodePilot](https://github.com/macoscope/CodePilot.git) | 代码、图片、文件搜索利器，快捷键CMD + SHIFT +X |
+
+
+# Xcode更新后插件不能用的解决办法
+运行下面的命令
+```
+find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add `defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`
+```
