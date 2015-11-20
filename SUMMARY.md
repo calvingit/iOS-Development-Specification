@@ -17,7 +17,7 @@
 * 代码版本控制
     * [Git基本配置](Git_Basic.md)
     * [Git工作流规范](Git_Flow.md)
-* [附录一 Xcode常用插件](Xcode_Plugins.md)
+* [附录一 Xcode插件](Xcode_Plugins.md)
 * [附录二 常用第三方开源库](Third_Party_Library.md)
 * [参考](Reference.md)
 
