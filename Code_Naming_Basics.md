@@ -4,7 +4,7 @@
 * 最好是既清晰又简短,但不要为简短而丧失清晰性
 
 | 代码 | 点评 |
-| -- | -- |
+| --- | --- |
 | insertObject: atIndex: | 好 |
 | insert: at: | 不清晰：要插入什么？“at”表示什么？|
 | removeObjectAtIndex: | 好 |
@@ -14,7 +14,7 @@
 * 名称通常不缩写,即使名称很长,也要拼写完全（禁止拼音！！！）
 
 | 代码 | 点评 |
-| -- | -- |
+| --- | --- |
 | destinationSelection: | 好 |
 | destSel: | 不好|
 | setBackgroundColor: | 好 |
@@ -27,7 +27,7 @@
 * 避免使用有歧义的 API 名称,如那些能被理解成多种意思的方法名称
 
 | 代码 | 点评 |
-| -- | -- |
+| --- | --- |
 | sendPort: | 是发送端口还是返回一个发送端口？ |
 | displayName: | 是显示一个名称还是返回用户界面中控件的标题？ |
 
@@ -36,7 +36,7 @@
 * 在使用多态方法的类中，命名的一致性非常重要，在不同类中实现相同功能的方法应该具有相同的名称。
 
 | 代码 | 点评 |
-| -- | -- |
+| --- | --- |
 | - (int) tag | 在 NSView，NSCell，NSControl 中有定义 |
 | - (void)setStringValue:(NSString *) | 在许多Cocoa类中有定义 |
 更多请看 [函数参数](#)
@@ -51,7 +51,7 @@
 下面是常见的苹果官方的前缀
  
 | 前缀 | Cocoa 框架 |
-| -- | -- |
+| --- | --- |
 | NS | Foundation |
 | NS | Application Kit |
 | AB | Address Book |
@@ -80,7 +80,7 @@
 * 大多数协议仅组合一组相关的方法,而不关联任何类,这种协议的命名应该使用动名词(ing),以不与 类名混淆。
 
 | 代码 | 点评 |
-| -- | -- |
+| --- | --- |
 | NSLocking | good |
 | NSLock | 糟糕,它看起来像类名 |
 
@@ -91,20 +91,20 @@
 * 声明孤立的类或协议:将孤立的类或协议声明放置在单独的头文件中,该头文件名称与类或协议同名
 
 | 头文件 | 声明 |
-| -- | -- |
+| --- | --- |
 | NSApplication.h | NSApplication 类 |
 
 * 声明相关联的类或协议:将相关联的声明(类,类别及协议) 放置在一个头文件中,该头文件名称与 主要的类/类别/协议的名字相同。
 
 | 头文件 | 声明 |
-| -- | -- |
+| --- | --- |
 | NSString.h | NSString 和 NSMutableString 类 |
 | NSLock.h | NSLocking 协议和 NSLock, NSConditionLock, NSRecursiveLock 类 |
 
 * 包含框架头文件:每个框架应该包含一个与框架同名的头文件,该头文件包含该框架所有公开的头文件。
 
 | 头文件 | 声明 |
-| -- | -- |
+| --- | --- |
 | Foundation.h | Foundation.framework |
 * 为已有框架中的某个类扩展 API:如果要在一个框架中声明属于另一个框架某个类的范畴类的方法, 该头文件的命名形式为:原类名+“Additions”。如 Application Kit 中的 NSBundleAdditions.h
 * 相关联的函数与数据类型:将相联的函数,常量,结构体以及其他数据类型放置到一个头文件中,并以合适的名字命名。如 Application Kit 中的 NSGraphics.h

@@ -17,7 +17,7 @@
 * 如果方法返回方法接收者的某个属性,直接用属性名称命名。不要使用 get，除非是间接返回一个或多个值。请参考“访问方法”一节。
 
 | 代码 | 点评 |
-|--|--|
+|---|---|
 | - (NSSize) cellSize; | 对 |
 | - (NSSize) calcCellSize; | 错 |
 | - (NSSize) getCellSize;| 错 |
@@ -25,7 +25,7 @@
 * 参数要用描述该参数的关键字命名
 
 | 代码 | 点评 |
-|--|--|
+|---|---|
 |- (void) sendAction:(SEL)aSelector to:(id)anObject forAllCells:(BOOL)flag;|对 |
 | - (void) sendAction:(SEL)aSelector  :(id)anObject  :(BOOL)flag; | 错 |
 
@@ -45,7 +45,7 @@
 * 不要使用 and 来连接用属性作参数的关键字
 
 | 代码 | 点评 |
-|--|--|
+|---|---|
 | - (int)runModalForDirectory:(NSString *)path file:(NSString *)name types:(NSArray *)fileTypes; | 对 |
 |- (int)runModalForDirectory:(NSString *)path andFile:(NSString *)name andTypes:(NSArray *)fileTypes;| 错 |
 

@@ -11,7 +11,7 @@
 //  LeFit
 //
 //  Created by Zhang Wen on 15-3-22.
-//  Copyright (c) 2015 Appscomm LLC. All rights reserved.
+//  Copyright (c) 2015 Facebook LLC. All rights reserved.
 //
 
 ```
@@ -24,15 +24,15 @@
 注：对于模块使用 [@import][Import_2] 语法。   
 
 ```   
-	// Frameworks
-	@import QuartzCore;
+// Frameworks
+@import QuartzCore;
 	
-	// Models
-	#import "NYTUser.h"
+// Models
+#import "NYTUser.h"
 	
-	// Views
-	#import "NYTButton.h"
-	#import "NYTUserView.h"
+// Views
+#import "NYTButton.h"
+#import "NYTUserView.h"
 ```   
 
 
@@ -40,24 +40,25 @@
 [Import_2]: http://clang.llvm.org/docs/Modules.html#using-modules
 
 ##方法注释
-采用javadoc的格式，可以使用XCode插件VVDocumenter-Xcode快速添加，只需输入`///`即可
+使用Xcode自带的注释快捷键`Option + Command + /`即可
 
 ```
 /**
- *  功能描述
- *
- *  @param tableView 参数说明
- *  @param section   参数说明
- *
- *  @return 返回值说明
+ <#Description#>
+
+ @param keyPath <#keyPath description#>
+ @param object <#object description#>
+ @param change <#change description#>
+ @param context <#context description#>
  */
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return [self.familyNames objectAtIndex:section];
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+
+    NSLog(@"%@, %@, %@, %@", keyPath, object, change, context);
 }
 ```
 ##代码块注释
-单行的用`//`+空格开头，多汗的采用`/*  */`注释
+单行的用`//`+空格开头，多行的采用`/*  */`注释
+
 ##TODO注释
 TODO 很不错, 有时候, 注释确实是为了标记一些未完成的或完成的不尽如人意的地方, 这样一搜索, 就知道还有哪些活要干, 日志都省了。
 

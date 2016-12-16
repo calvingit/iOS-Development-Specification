@@ -8,31 +8,31 @@
 * delgate或协议相关方法放到一般内容之后。
 
 ```
-	#pragma mark - Lifecycle
+#pragma mark - Lifecycle
 	
-	- (void)dealloc {}
-	- (instancetype)init {}
-	- (void)viewDidLoad {}
-	- (void)viewWillAppear:(BOOL)animated {}
-	- (void)didReceiveMemoryWarning {}
+- (void)dealloc {}
+- (instancetype)init {}
+- (void)viewDidLoad {}
+- (void)viewWillAppear:(BOOL)animated {}
+- (void)didReceiveMemoryWarning {}
 	
-	#pragma mark - Custom Accessors
+#pragma mark - Custom Accessors
 	
-	- (void)setCustomProperty:(id)value {}
-	- (id)customProperty {}
+- (void)setCustomProperty:(id)value {}
+- (id)customProperty {}
 	
-	#pragma mark - Protocol conformance
-	#pragma mark - UITextFieldDelegate
-	#pragma mark - UITableViewDataSource
-	#pragma mark - UITableViewDelegate
+#pragma mark - Protocol conformance
+#pragma mark - UITextFieldDelegate
+#pragma mark - UITableViewDataSource
+#pragma mark - UITableViewDelegate
 	
-	#pragma mark - NSCopying
+#pragma mark - NSCopying
 	
-	- (id)copyWithZone:(NSZone *)zone {}
+- (id)copyWithZone:(NSZone *)zone {}
 	
-	#pragma mark - NSObject
+#pragma mark - NSObject
 	
-	- (NSString *)description {}
+- (NSString *)description {}
 ```
 
 #代码排版格式
